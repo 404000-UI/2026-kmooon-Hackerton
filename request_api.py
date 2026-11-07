@@ -2,10 +2,12 @@ import os
 from dotenv import load_dotenv
 import re
 import requests
+import streamlit as st
 
 load_dotenv()
 
 API_KEY = os.getenv("API_KEY")
+API_KEY = st.secrets["API_KEY"]
 
 def clean_dish_name(dish: str) -> str:
     dish: str = re.sub(r"[\(\[].*?[\)\]]", "", dish)
