@@ -17,6 +17,7 @@ offices: dict = {
     "제주특별자치도교육청": "T10"
 }
 office_name = st.selectbox("교육청을 선택하세요", list(offices.keys()))
+office_code = offices[office_name]
 
 col1, col2 = st.columns(2)
 with col1:
@@ -30,7 +31,7 @@ if st.button("급식 조회하기"):
 
     with st.spinner("급식 정보를 불러오는 중..."):
         date_str: str = date.strftime("%Y%m%d")
-        info: list[str] = get_info(date=date, school_name=school_name)
+        info: list[str] = get_info(office_code=office_code, date=date, school_name=school_name)
 
     if info:
         st.success(f"{school_name} 급식을 불러왔습니다.")

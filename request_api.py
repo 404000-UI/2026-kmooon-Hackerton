@@ -41,8 +41,7 @@ def get_meal(office_code: str, school_code: str, date: str) -> str :
     data: str = requests.get(url, params=params).json()
     return data["mealServiceDietInfo"][1]["row"][0]["DDISH_NM"]
 
-def get_info(date: str, school_name: str) -> list[str] :
-    office_code: str = "J10"
+def get_info(office_code: str, date: str, school_name: str) -> list[str] :
     school_code: str = find_school(office_code, school_name)
     return [clean_menu(get_meal(office_code=office_code, school_code=school_code, date=date.strftime("%Y%m%d"))), office_code, school_code]
 
